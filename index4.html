@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Pierwsza proba Pand</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+		<link href="styles.css" rel="stylesheet" />
+    </head>
+    
+	<body>
+		<div id="impress">
+		<div class="no-support-message">
+		Your browser doesn't support impress.js.  Try Chrome or Safari.
+		</div>
+	
+    <div id="tlo"><h1 id="tlo-text">dsadas</h1></div>
+    
+    
+    <div class="druga step" data-x="0" data-y="0" data-scale="25" data-parent="null" style="background-color:#063">
+    	Główne zagadnienie 1 level 1<img src="lama.jpeg" height="140"></div>
+        
+   
+    <div class="druga step" data-x="-10000" data-y="0"   data-scale="24" data-parent="1">Główne zagadnienie 1 level 2<img src="panda.JPG"></div>
+    
+    <canvas id="myCanvas" width="300" height="150" style="border:120px solid yellow;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-1000, 0);
+    ctx.stroke();
+
+</script>
+
+	<div class="druga step" data-x="0" data-y="-6000"  data-scale="24" data-parent="1">Główne zagadnienie 1 level 2</div>
+    <div class="druga step" data-x="10000" data-y="0"  data-scale="24" data-parent="1">Główne zagadnienie 1 level 2</div>
+    <div class="druga step" data-x="0" data-y="6000"  data-scale="24" data-parent="1">Główne zagadnienie 1 level 2</div>
+  
+  
+    <div class="druga step" data-x="-10000" data-y="0" data-scale="24" data-scale="24" data-parent="1">
+    	Główne zagadnienie 1 level 2<img src="panda.JPG"></div>    
+        
+    <div class="druga step" data-x="-19600" data-y="0" data-scale="23" data-poziom="3" style="background-color:blue">
+    	Główne zagadnienie 1 level 3<img src="panda.JPG"></div>
+    <div class="druga step" data-x="-10000" data-y="-5760" data-scale="23" data-poziom="3" style="background-color:blue">
+    	Główne zagadnienie 1 level 3<img src="panda.JPG"></div>
+   	<div class="druga step" data-x="400" data-y="0" data-scale="23" data-poziom="3" style="background-color:blue">
+    	Główne zagadnienie 1 level 3</div>
+    <div class="druga step" data-x="-10000" data-y="5760" data-scale="23" data-poziom="3" style="background-color:blue">
+    	Główne zagadnienie 1 level 3</div>
+
+
+	<div class="druga step" data-x="-19600" data-y="0" data-scale="23" data-poziom="3" style="background-color:blue">
+    	Główne zagadnienie 1 level 3<img src="panda.JPG"></div>
+
+	<div class="druga step" data-x="-28800" data-y="2760" data-scale="22" data-poziom="3" style="background-color:pink">
+    	Główne zagadnienie 1 level 3</div>
+    <div class="druga step" data-x="-28800" data-y="-2760" data-scale="22" data-poziom="3" style="background-color:pink">
+    	Główne zagadnienie 1 level 3</div>
+    <div class="druga step" data-x="-19600" data-y="-5520" data-scale="22" data-poziom="3" style="background-color:pink">
+    	Główne zagadnienie 1 level 3<img src="panda.JPG"></div>
+    <div class="druga step" data-x="-19600" data-y="5520" data-scale="22" data-poziom="3" style="background-color:pink">
+    	Główne zagadnienie 1 level 3</div>
+        
+		        
+
+		</div>
+		<script type="text/javascript" src="impress.js"></script>
+		<!--
+			call `impress().init()` function to initialize impress.js presentation.
+		-->
+		<script>impress().init();</script>
+	</body>
+</html>
