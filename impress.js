@@ -588,7 +588,7 @@
 			var prev = activeStep.dataset.parent == null ? steps[0] : activeStep.dataset.parent;
 			return goto(prev);
 		}
-        
+		
         // Adding some useful classes to step elements.
         //
         // All the steps that have not been shown yet are given `future` class.
