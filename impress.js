@@ -228,7 +228,9 @@
                 init: empty,
                 goto: empty,
                 prev: empty,
-                next: empty
+                next: empty,
+                deeper: empty,
+                shallower: empty
             };
         }
         
@@ -561,12 +563,12 @@
             return el;
         };
         
-           // `prev` API function goes to previous step (in document order)
+        // `prev` API function goes to previous step (in document order)
         var prev = function () {
-            //var prev = steps.indexOf( activeStep ) - 1;
-            //prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
-            var prev = activeStep.dataset.parent == null ? steps[0] : activeStep.dataset.parent;
-			return goto(prev);
+            var prev = steps.indexOf( activeStep ) - 1;
+            prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
+            
+            return goto(prev);
         };
 
         // `next` API function goes to next step (in document order)
@@ -575,6 +577,17 @@
             next = next < steps.length ? steps[ next ] : steps[ 0 ];
             return goto(next);
         };
+        
+        var deeper = function() {
+			var children = mindMapTree[activeStep.id]
+			var next = children ? children[0] : activeStep;
+			return goto(next);
+		}
+		
+		var shallower = function() {
+			var prev = activeStep.dataset.parent == null ? steps[0] : activeStep.dataset.parent;
+			return goto(prev);
+		}
         
         // Adding some useful classes to step elements.
         //
@@ -647,7 +660,9 @@
             init: init,
             goto: goto,
             next: next,
-            prev: prev
+            prev: prev,
+            deeper: deeper,
+            shallower: shallower
         });
 
     };
@@ -718,16 +733,19 @@
                 switch( event.keyCode ) {
                     case 33: // pg up
                     case 37: // left
-                    case 38: // up
                              api.prev();
+                             break;
+                    case 38: // up
+                             api.shallower();
                              break;
                     case 9:  // tab
                     case 32: // space
                     case 34: // pg down
                     case 39: // right
-                    case 40: // down
                              api.next();
                              break;
+                    case 40: // down
+                             api.deeper();
                 }
                 
                 event.preventDefault();
