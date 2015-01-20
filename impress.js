@@ -120,6 +120,7 @@
     // `rotate` builds a rotate transform string for given data.
     // By default the rotations are in X Y Z order that can be reverted by passing `true`
     // as second parameter.
+    // as second parameter.
     var rotate = function ( r, revert ) {
         var rX = " rotateX(" + r.x + "deg) ",
             rY = " rotateY(" + r.y + "deg) ",
@@ -260,6 +261,8 @@
         var root = byId( rootId );
         var canvas = document.createElement("div");
         
+        var mindMapTree = {};
+        
         var initialized = false;
         
         // STEP EVENTS
@@ -309,9 +312,17 @@
                         z: toNumber(data.rotateZ || data.rotate)
                     },
                     scale: toNumber(data.scale, 1),
-                    el: el
+                    el: el,
+                    parent: data.parent
                 };
-            
+                      
+            if (el.id && step.parent) {
+				if (!mindMapTree[step.parent]) {
+					mindMapTree[step.parent] = [];
+				}
+				mindMapTree[step.parent].push(el.id);
+			}
+				
             if ( !el.id ) {
                 el.id = "step-" + (idx + 1);
             }
@@ -389,6 +400,8 @@
             // get and init steps
             steps = $$(".step", root);
             steps.forEach( initStep );
+            
+            console.log(mindMapTree);
             
             // set a default initial state of the canvas
             currentState = {
@@ -548,19 +561,18 @@
             return el;
         };
         
-        // `prev` API function goes to previous step (in document order)
+           // `prev` API function goes to previous step (in document order)
         var prev = function () {
-            var prev = steps.indexOf( activeStep ) - 1;
-            prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
-            
-            return goto(prev);
+            //var prev = steps.indexOf( activeStep ) - 1;
+            //prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
+            var prev = activeStep.dataset.parent == null ? steps[0] : activeStep.dataset.parent;
+			return goto(prev);
         };
-        
+
         // `next` API function goes to next step (in document order)
         var next = function () {
             var next = steps.indexOf( activeStep ) + 1;
             next = next < steps.length ? steps[ next ] : steps[ 0 ];
-            
             return goto(next);
         };
         
